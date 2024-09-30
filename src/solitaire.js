@@ -1,107 +1,31 @@
 import { useState } from 'react';
 import { Deck } from "./deck.js"
- 
-var deck = new Deck;
-var drawpile = [];
-var discard = [];
-var dealt = Array.from({length: 7},()=> Array.from({length: 13}, () => null));
 
-function deal() {
-  let newCards = Array.from({length: 7},()=> Array.from({length: 13}, () => null));
-  for (let i = 0; i < 7; i++) {
-    for (let j = 0; j < i + 1; j++) {
-      //console.log(deck.m_size);
-      if (deck.m_size <= 0) { // figure out why it goes back in here???
-        break;
-      }
-      dealt[i][j] = deck.deal_top();
-      let val = dealt[i][j].m_value.toString() + dealt[i][j].m_suit;
-      newCards[i][j] = val;
-    }
-  }
-  while (deck.m_size > 0) {
-    drawpile.push(deck.deal_top());
-  }
-  return newCards;
-}
-
-function faceup(i, j, face) {
-  return face[i][j];
-}
-
-function dp_is_empty() {
-  if (drawpile.length > 0) {
-    console.log(drawpile.length);
-    return false;
-  }
-  return null;
-}
-
-function get_discard(i) {
-  if (discard.length == 0) {
-    return null;
-  }
-  return discard[discard.length-i];
-}
-
-function get_img_link(card, faceup, show_empty = false) {
-  if (card == null && faceup != false) { // fix
-    if (show_empty) {
-      return "/images/discard.png";
-    }
-    return null;
-  }
-  if (!faceup) {
-    return "/images/back.png";
-  }
-
-  let suit = card[card.length-1];
-  let value = parseInt(card);
-  let link = "/images/";
-  switch(value) {
-    case 1:
-      link += "A";
-      break;
-    case 11:
-      link += "J";
-      break;
-    case 12:
-      link += "Q";
-      break;
-    case 13:
-      link += "K";
-      break;
-    default:
-      link += value.toString();
-  }
-  link += "of-";
-  switch(suit) {
-    case 'D':
-      link += "Diamonds";
-      break;
-    case 'C':
-      link += "Clubs";
-      break;
-    case 'H':
-      link += "Hearts";
-      break;
-    case 'S':
-      link += "Spades";
-      break;
-  }
-  link += "-White.png";
-  return link;
-}
+// function draw() {
+//   if (drawpile.length == 0) {
+//     drawpile = discard.slice(); // can i do this???
+//     discard.length = 0;
+//   }
+//   let num_drawn = 0;
+//   while (drawpile.length != 0 && num_drawn < 3) {
+//     discard.push(drawpile.shift());
+//     console.log(discard[discard.length-1]);
+//     num_drawn++;
+//   }
+//   console.log("test ", drawpile.length, discard.length);
+// }
 
 export default function Board() { // board inspired by tic tac toe tutorial
   const [cards, setCards] = useState(Array.from({length: 7},()=> Array.from({length: 13}, () => null)));
   const [face, setFace] = useState(Array.from({length: 7},()=> Array.from({length: 13}, () => null)));
   const [piles, setPiles] = useState(Array.from({length: 4},()=> Array.from({length: 13}, () => null)));
   const [start, setStart] = useState(true);
+  const [drawpile, setDrawpile] = useState([]);
+  const [discard, setDiscard] = useState([]);
+  var deck = new Deck;
     if (start) { // shuffle and deal
       deck.shuffle();
       let newCardValue = deal();
-      // console.log(newCardValue);
       setCards(newCardValue);
       let newFace = face;
       for (let i = 0; i < 7; i++) {
@@ -116,6 +40,101 @@ export default function Board() { // board inspired by tic tac toe tutorial
       }
       setFace(newFace);
       setStart(false);
+    }
+
+    function deal() {
+      let newCards = Array.from({length: 7},()=> Array.from({length: 13}, () => null));
+      let dealt = Array.from({length: 7},()=> Array.from({length: 13}, () => null)); // fix this so that we only keep this and not the other 
+      for (let i = 0; i < 7; i++) {
+        for (let j = 0; j < i + 1; j++) {
+          //console.log(deck.m_size);
+          if (deck.m_size <= 0) { // figure out why it goes back in here???
+            break;
+          }
+          dealt[i][j] = deck.deal_top();
+          let val = dealt[i][j].m_value.toString() + dealt[i][j].m_suit;
+          newCards[i][j] = val;
+        }
+      }
+      while (deck.m_size > 0) {
+        drawpile.push(deck.deal_top());
+      }
+      return newCards;
+    }
+
+    function faceup(i, j, face) {
+      return face[i][j];
+    }
+
+    function dp_is_empty() {
+      if (drawpile.length > 0) {
+        return false;
+      }
+      return null;
+    }
+
+    function get_discard(i) {
+      if (discard.length == 0) {
+        return null;
+      }
+      let card = discard[discard.length-i];
+      let val = card.m_value.toString() + card.m_suit;
+      return val;
+    }
+
+    function get_img_link(card, faceup, show_empty = false) {
+      if (card == null && faceup != false) { // fix
+        if (show_empty) {
+          return "/images/discard.png";
+        }
+        return null;
+      }
+      if (!faceup) {
+        return "/images/back.png";
+      }
+      let suit = card[card.length-1];
+      let value = parseInt(card);
+      let link = "/images/";
+      switch(value) {
+        case 1:
+          link += "A";
+          break;
+        case 11:
+          link += "J";
+          break;
+        case 12:
+          link += "Q";
+          break;
+        case 13:
+          link += "K";
+          break;
+        default:
+          link += value.toString();
+      }
+      link += "of-";
+      switch(suit) {
+        case 'D':
+          link += "Diamonds";
+          break;
+        case 'C':
+          link += "Clubs";
+          break;
+        case 'H':
+          link += "Hearts";
+          break;
+        case 'S':
+          link += "Spades";
+          break;
+      }
+      link += "-White.png";
+      return link;
+    }
+
+    function get_type(unclickable) {
+      if (unclickable) {
+        return "card";
+      }
+      return "card2";
     }
 
     function restart() {
@@ -148,12 +167,29 @@ export default function Board() { // board inspired by tic tac toe tutorial
         return;
       }
     };
+
+    function draw() {
+      let new_discard = discard.slice();
+      let new_drawpile = drawpile.slice();
+      if (new_drawpile.length == 0) {
+        setDrawpile(new_discard); // can i do this???
+        setDiscard(new_drawpile);
+        return;
+      }
+      let num_drawn = 0;
+      while (new_drawpile.length != 0 && num_drawn < 3) {
+        new_discard.push(new_drawpile.shift());
+        num_drawn++;
+      }
+      setDrawpile(new_drawpile);
+      setDiscard(new_discard);
+    }
   
     return ( // return the board object
       <>
         <div className="center-screen">
           <div className="board-row">
-            <button id="stockpile" className="card" style={{ left: "20px", top: "140px" }}>
+            <button id="stockpile" className={get_type(false)} style={{ left: "20px", top: "140px" }} onClick={() => draw()}>
               {get_img_link(null, dp_is_empty(), true) ? (
               <img id="sp" src={get_img_link(null, dp_is_empty(), true)} alt="card" style={{ width: "120px", height: "168px" }} />
               ) : null }
