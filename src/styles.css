@@ -115,6 +115,25 @@ body {
   border: 2px solid transparent;
 }
 
+.card3 {
+  background: transparent;
+  border: 0px solid #999;
+  float: left;
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 34px;
+  width: 120px; 
+  height: 168px;
+  margin-right: 3px;
+  margin-top: 3px;
+  padding: 0;
+  text-align: center;
+  position: absolute;
+  cursor: pointer;
+  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24); 
+  transform: translateY(4px);
+}
+
 .center-screen {
   display: flex;
   justify-content: center;
