@@ -2,24 +2,11 @@ import { useState } from 'react';
 import { Deck } from "./deck.js";
 import { Card } from "./globals.js"
 
-
-// function draw() {
-//   if (drawpile.length == 0) {
-//     drawpile = discard.slice(); // can i do this???
-//     discard.length = 0;
-//   }
-//   let num_drawn = 0;
-//   while (drawpile.length != 0 && num_drawn < 3) {
-//     discard.push(drawpile.shift());
-//     console.log(discard[discard.length-1]);
-//     num_drawn++;
-//   }
-//   console.log("test ", drawpile.length, discard.length);
-// }
+let hardMode = true;
 
 export default function Board() { // board inspired by tic tac toe tutorial
-  const [cards, setCards] = useState(Array.from({length: 7},()=> Array.from({length: 13}, () => null)));
-  const [face, setFace] = useState(Array.from({length: 7},()=> Array.from({length: 13}, () => null)));
+  const [cards, setCards] = useState(Array.from({length: 7},()=> Array.from({length: 19}, () => null)));
+  const [face, setFace] = useState(Array.from({length: 7},()=> Array.from({length: 19}, () => null)));
   const [piles, setPiles] = useState(Array.from({length: 4},()=> Array.from({length: 13}, () => null)));
   const [start, setStart] = useState(true);
   const [drawpile, setDrawpile] = useState([]);
@@ -124,6 +111,27 @@ export default function Board() { // board inspired by tic tac toe tutorial
     tableau5thirteenth: false,
     tableau6thirteenth: false,
     tableau7thirteenth: false,
+    tableau2fourteenth: false,
+    tableau3fourteenth: false,
+    tableau4fourteenth: false,
+    tableau5fourteenth: false,
+    tableau6fourteenth: false,
+    tableau7fourteenth: false,
+    tableau3fifteenth: false,
+    tableau4fifteenth: false,
+    tableau5fifteenth: false,
+    tableau6fifteenth: false,
+    tableau7fifteenth: false,
+    tableau4sixteenth: false,
+    tableau5sixteenth: false,
+    tableau6sixteenth: false,
+    tableau7sixteenth: false,
+    tableau5seventeenth: false,
+    tableau6seventeenth: false,
+    tableau7seventeenth: false,
+    tableau6eighteenth: false,
+    tableau7eighteenth: false,
+    tableau7nineteenth: false,
   });
   const [cardClass, setCardClass] = useState({
     stockpile: 'card2',
@@ -225,6 +233,27 @@ export default function Board() { // board inspired by tic tac toe tutorial
     tableau5thirteenth: 'card',
     tableau6thirteenth: 'card',
     tableau7thirteenth: 'card',
+    tableau2fourteenth: 'card',
+    tableau3fourteenth: 'card',
+    tableau4fourteenth: 'card',
+    tableau5fourteenth: 'card',
+    tableau6fourteenth: 'card',
+    tableau7fourteenth: 'card',
+    tableau3fifteenth: 'card',
+    tableau4fifteenth: 'card',
+    tableau5fifteenth: 'card',
+    tableau6fifteenth: 'card',
+    tableau7fifteenth: 'card',
+    tableau4sixteenth: 'card',
+    tableau5sixteenth: 'card',
+    tableau6sixteenth: 'card',
+    tableau7sixteenth: 'card',
+    tableau5seventeenth: 'card',
+    tableau6seventeenth: 'card',
+    tableau7seventeenth: 'card',
+    tableau6eighteenth: 'card',
+    tableau7eighteenth: 'card',
+    tableau7nineteenth: 'card',
   });
   const [firstClick, setFirstClick] = useState(null);
   var deck = new Deck;
@@ -232,7 +261,7 @@ export default function Board() { // board inspired by tic tac toe tutorial
       deck.shuffle();
       let newCardValue = deal();
       setCards(newCardValue);
-      let newFace = Array.from({length: 7},()=> Array.from({length: 13}, () => null));
+      let newFace = Array.from({length: 7},()=> Array.from({length: 19}, () => null)); // ???
       for (let i = 0; i < 7; i++) {
         for (let j = 0; j < i + 1; j++) {
           if (i == j) {
@@ -248,11 +277,10 @@ export default function Board() { // board inspired by tic tac toe tutorial
     }
   
     function deal() {
-      let newCards = Array.from({length: 7},()=> Array.from({length: 13}, () => null));
-      let dealt = Array.from({length: 7},()=> Array.from({length: 13}, () => null)); // fix this so that we only keep this and not the other
+      let newCards = Array.from({length: 7},()=> Array.from({length: 19}, () => null));
+      let dealt = Array.from({length: 7},()=> Array.from({length: 19}, () => null)); // fix this so that we only keep this and not the other
       for (let i = 0; i < 7; i++) {
         for (let j = 0; j < i + 1; j++) {
-          //console.log(deck.m_size);
           if (deck.m_size <= 0) { // figure out why it goes back in here???
             break;
           }
@@ -336,9 +364,9 @@ export default function Board() { // board inspired by tic tac toe tutorial
     }
 
     function restart() {
-      setCards(Array.from({length: 7},()=> Array.from({length: 13}, () => null)));
+      setCards(Array.from({length: 7},()=> Array.from({length: 19}, () => null)));
       drawpile.reset();
-      setFace(Array.from({length: 7},()=> Array.from({length: 13}, () => null)));
+      setFace(Array.from({length: 7},()=> Array.from({length: 19}, () => null)));
       setPiles(Array.from({length: 4},()=> Array.from({length: 13}, () => null)));
       setDrawpile([]);
       setDiscard([]);
@@ -442,6 +470,27 @@ export default function Board() { // board inspired by tic tac toe tutorial
         tableau5thirteenth: 'card',
         tableau6thirteenth: 'card',
         tableau7thirteenth: 'card',
+        tableau2fourteenth: 'card',
+        tableau3fourteenth: 'card',
+        tableau4fourteenth: 'card',
+        tableau5fourteenth: 'card',
+        tableau6fourteenth: 'card',
+        tableau7fourteenth: 'card',
+        tableau3fifteenth: 'card',
+        tableau4fifteenth: 'card',
+        tableau5fifteenth: 'card',
+        tableau6fifteenth: 'card',
+        tableau7fifteenth: 'card',
+        tableau4sixteenth: 'card',
+        tableau5sixteenth: 'card',
+        tableau6sixteenth: 'card',
+        tableau7sixteenth: 'card',
+        tableau5seventeenth: 'card',
+        tableau6seventeenth: 'card',
+        tableau7seventeenth: 'card',
+        tableau6eighteenth: 'card',
+        tableau7eighteenth: 'card',
+        tableau7nineteenth: 'card',
       });
       setVisibility({
         stockpile: true,
@@ -543,33 +592,31 @@ export default function Board() { // board inspired by tic tac toe tutorial
         tableau5thirteenth: false,
         tableau6thirteenth: false,
         tableau7thirteenth: false,
+        tableau2fourteenth: false,
+        tableau3fourteenth: false,
+        tableau4fourteenth: false,
+        tableau5fourteenth: false,
+        tableau6fourteenth: false,
+        tableau7fourteenth: false,
+        tableau3fifteenth: false,
+        tableau4fifteenth: false,
+        tableau5fifteenth: false,
+        tableau6fifteenth: false,
+        tableau7fifteenth: false,
+        tableau4sixteenth: false,
+        tableau5sixteenth: false,
+        tableau6sixteenth: false,
+        tableau7sixteenth: false,
+        tableau5seventeenth: false,
+        tableau6seventeenth: false,
+        tableau7seventeenth: false,
+        tableau6eighteenth: false,
+        tableau7eighteenth: false,
+        tableau7nineteenth: false,
       });
       setFirstClick(null);
       setStart(true);
     }
-
-    document.onkeydown = (e) => { // control what happens when keys are hit
-      let dir;
-      if (e.code === "ArrowUp" || e.code === "KeyW") {
-        console.log("up pressed");
-        dir = UP;
-      } 
-      else if (e.code === "ArrowDown" || e.code === "KeyS") {
-        console.log("down pressed");
-        dir = DOWN;
-      } 
-      else if (e.code === "ArrowLeft" || e.code === "KeyA") {
-        console.log("left pressed");
-        dir = LEFT;
-      } 
-      else if (e.code === "ArrowRight" || e.code === "KeyD") {
-        console.log("right pressed");
-        dir = RIGHT;
-      }
-      else {
-        return;
-      }
-    };
 
     function newLocation(id) {
       let card = null; 
@@ -642,8 +689,34 @@ export default function Board() { // board inspired by tic tac toe tutorial
           newTop += "twelfth";
           y = 12;
         }
+        else if (testString == "fourteenth") {
+          newTop += "thirteenth";
+          y = 13;
+        }
+        else if (testString == "fifteenth") {
+          newTop += "fourteenth";
+          y = 14;
+        }
+        else if (testString == "sixteenth") {
+          newTop += "fifteenth";
+          y = 15;
+        }
+        else if (testString == "seventeenth") {
+          newTop += "sixteenth";
+          y = 16;
+        }
+        else if (testString == "eighteenth") {
+          newTop += "seventeenth";
+          y = 17;
+        }
+        else if (testString == "nineteenth") {
+          newTop += "eighteenth";
+          y = 18;
+        }
         card = cards[x][y];
-        console.log(cards[x][y]);
+      }
+      if (card == null) {
+        return null;
       }
       let card_value = card.match(/\d+/); // get the value of the card to be moved
       let value = parseInt(card_value);
@@ -656,10 +729,8 @@ export default function Board() { // board inspired by tic tac toe tutorial
       let numb2 = null;
       if (id[0] == 'f') {
         result = id;
-        console.log(id);
         let match = id[10];
         numb2 = parseInt(match) - 1;
-        console.log(numb2);
         potential_card = piles[numb2][0];
         foundation = true;
       }
@@ -704,6 +775,24 @@ export default function Board() { // board inspired by tic tac toe tutorial
           j = 11;
         }
         else if (testString == "thirteenth") {
+          j = 12;
+        }
+        else if (testString == "fourteenth") {
+          j = 13;
+        }
+        else if (testString == "fifteenth") {
+          j = 14;
+        }
+        else if (testString == "sixteenth") {
+          j = 15;
+        }
+        else if (testString == "seventeenth") {
+          j = 16;
+        }
+        else if (testString == "eighteenth") {
+          j = 17;
+        }
+        else {
           return null;
         }
 
@@ -744,6 +833,24 @@ export default function Board() { // board inspired by tic tac toe tutorial
           case 11:
             result += "thirteenth";
             break;
+          case 12:
+            result += "fourteenth";
+            break;
+          case 13:
+            result += "fifteenth";
+            break;
+          case 14:
+            result += "sixteenth";
+            break;
+          case 15:
+            result += "seventeenth";
+            break;
+          case 16:
+            result += "eighteenth";
+            break;
+          case 17:
+            result += "nineteenth";
+            break;
           default:
             result = null;
         }
@@ -754,9 +861,9 @@ export default function Board() { // board inspired by tic tac toe tutorial
       }
 
       let potential_card_value = potential_card ? potential_card.match(/\d+/) : null; // get the value of the card to be moved to
-      let value2 = parseInt(potential_card_value);
+      let value2 = potential_card_value ? parseInt(potential_card_value) : null;
       let potential_card_suit = potential_card ? potential_card[potential_card.length - 1] : null; // get the suit of the card to be moved to
-
+      let moveKing = false;
       if (foundation) {
         let newPiles = piles.slice();
         if (potential_card == null) {
@@ -782,27 +889,27 @@ export default function Board() { // board inspired by tic tac toe tutorial
       let newCards = cards.slice();
       let newFace = face.slice();
       if(!foundation) {
-        if ((card_suit == 'S' || card_suit == 'C') && (potential_card_suit == 'S' || potential_card_suit == 'C')) { // if new suit is black, return null if potential suit is black too
-          return null;
-        }
-        if ((card_suit == 'H' || card_suit == 'D') && (potential_card_suit == 'H' || potential_card_suit == 'D')) { // same with red
-          return null;
-        }  
         if (value2 != null) {
           if (value != value2 - 1) {
             return null;
           }
           newCards[i][j+1] = card;
           newFace[i][j+1] = true;
-          console.log(x, y-1);
         }
         else {
           if (value != 13) {
             return null;
           }
+          moveKing = true;
           newCards[i][0] = card;
           newFace[i][0] = true;
         }
+        if ((card_suit == 'S' || card_suit == 'C') && (potential_card_suit == 'S' || potential_card_suit == 'C')) { // if new suit is black, return null if potential suit is black too
+          return null;
+        }
+        if ((card_suit == 'H' || card_suit == 'D') && (potential_card_suit == 'H' || potential_card_suit == 'D')) { // same with red
+          return null;
+        }  
       }
       if (y > 0) {
         newFace[x][y-1] = true;
@@ -826,15 +933,14 @@ export default function Board() { // board inspired by tic tac toe tutorial
       setCards(newCards);
       if (newTop != null) {
         let t = "card2";
-        if (newTop == "bottom") {
-          t = "card4";
-        }
         setCardClass(prevState => ({
           ...prevState,
-          [newTop]: t,
+          [newTop]: "card2",
         }));
       }
-      console.log("test result", result);
+      if (moveKing) {
+        return result.substring(0, 8) + "bottom";
+      }
       return result;
     }
 
@@ -842,20 +948,23 @@ export default function Board() { // board inspired by tic tac toe tutorial
       let new_discard = discard.slice();
       let new_drawpile = drawpile.slice();
       if (new_drawpile.length == 0) {
-        setDrawpile(new_discard); // can i do this???
+        setDrawpile(new_discard);
         setDiscard(new_drawpile);
         setCardClass(prevState => ({
           ...prevState,
           ["discard1"]: "card",
-          // ["discard2"]: "card",
-          // ["discard3"]: "card",
         }));
         return;
       }
-      let num_drawn = 0;
-      while (new_drawpile.length != 0 && num_drawn < 3) {
+      if (hardMode) {
+        let num_drawn = 0;
+        while (new_drawpile.length != 0 && num_drawn < 3) {
+          new_discard.push(new_drawpile.shift());
+          num_drawn++;
+        }
+      }
+      else {
         new_discard.push(new_drawpile.shift());
-        num_drawn++;
       }
       if (new_discard.length - 1 >= 0) {
         setCardClass(prevState => ({
@@ -873,10 +982,7 @@ export default function Board() { // board inspired by tic tac toe tutorial
           return;
         }
       }
-
-      console.log(visibility);
       if (firstClick == null ) {
-        console.log("test", id);
         if (id[0] != 'f' || (piles[parseInt(id[10])-1][0] != null)) {
           setFirstClick(id);
           setCardClass(prevState => ({
@@ -898,11 +1004,10 @@ export default function Board() { // board inspired by tic tac toe tutorial
         if (location != null) {
           setCardClass(prevState => ({
             ...prevState,
-            // [id]: 'card',
             [firstClick]: 'card',
             [location]: 'card2',
           }));
-          if (firstClick[0] == 'd' || (firstClick[0] == 'f' && piles[parseInt(firstClick[10])-1][0] != null)) {
+          if (firstClick[0] == 'd' || (firstClick[0] == 'f' && piles[parseInt(firstClick[10])-1][0] != null) || (firstClick[0] == 't' && firstClick[8] == 'b')) {
             setCardClass(prevState => ({
               ...prevState,
               [firstClick]: 'card2',
@@ -912,7 +1017,7 @@ export default function Board() { // board inspired by tic tac toe tutorial
             ...prevState,
             [location]: true,
           }));
-          if (firstClick[0] != 'f' && firstClick[0] != 'd') {
+          if (firstClick[0] != 'f' && firstClick[0] != 'd' && firstClick[8] != 'b') {
             setVisibility(prevState => ({
               ...prevState,
               [firstClick]: false,
@@ -922,7 +1027,32 @@ export default function Board() { // board inspired by tic tac toe tutorial
         }
         else {
           alert("invalid second click"); // deal with this later
+          setCardClass(prevState => ({
+            ...prevState,
+            [firstClick]: 'card2',
+          }));
+          setFirstClick(null);
         }
+      }
+    }
+
+    function toggleDifficulty() {
+      hardMode = !hardMode;
+      if (hardMode) {
+        setVisibility(prevState => ({
+          ...prevState,
+          ["discard1"]: true,
+          ["discard2"]: true,
+          ["discard3"]: true,
+        }));
+      }
+      else {
+        setVisibility(prevState => ({
+          ...prevState,
+          ["discard1"]: true,
+          ["discard2"]: false,
+          ["discard3"]: false,
+        }));
       }
     }
   
@@ -940,21 +1070,21 @@ export default function Board() { // board inspired by tic tac toe tutorial
             {visibility['discard3'] && (
               <button id="discard3" className={cardClass['discard3']} style={{ left: "160px", top: "140px" }} onClick={() => move("discard3")}>
                 {get_img_link(get_discard(3), true, false) ? (
-                <img id="disc3" src={get_img_link(get_discard(3), true, true)} alt="card" style={{ width: "120px", height: "168px" }} />
+                <img id="disc3" src={get_img_link(get_discard(3), true, false)} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['discard2'] && (
               <button id="discard2" className={cardClass['discard2']} style={{ left: "180px", top: "140px" }} onClick={() => move("discard2")}>
                 {get_img_link(get_discard(2), true, false) ? (
-                <img id="disc2" src={get_img_link(get_discard(2), true, true)} alt="card" style={{ width: "120px", height: "168px" }} />
+                <img id="disc2" src={get_img_link(get_discard(2), true, false)} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['discard1'] && (
               <button id="discard1" className={cardClass['discard1']} style={{ left: "200px", top: "140px" }} onClick={() => move("discard1")}>
                 {get_img_link(get_discard(1), true, false) ? (
-                <img id="disc1" src={get_img_link(get_discard(1), true, true)} alt="card" style={{ width: "120px", height: "168px" }} />
+                <img id="disc1" src={get_img_link(get_discard(1), true, false)} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
@@ -992,50 +1122,50 @@ export default function Board() { // board inspired by tic tac toe tutorial
           <div className="board-row">
             {visibility['tableau1bottom'] && (
               <button id="tableau1bottom" className={cardClass['tableau1bottom']} style={{ left: "20px", top: "330px" }} onClick={() => move("tableau1bottom")}>
-                {get_img_link(cards[0][0],faceup(0,0,face)) ? (
-                <img id="t1b" src={get_img_link(cards[0][0],faceup(0,0,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                {get_img_link(cards[0][0],faceup(0,0,face),true) ? (
+                <img id="t1b" src={get_img_link(cards[0][0],faceup(0,0,face),true)} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau2bottom'] && (
               <button id="tableau2bottom" className={cardClass['tableau2bottom']} style={{ left: "160px", top: "330px" }} onClick={() => move("tableau2bottom")}>
-                {get_img_link(cards[1][0],faceup(1,0,face)) ? (
-                <img id="t2b" src={get_img_link(cards[1][0],faceup(1,0,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                {get_img_link(cards[1][0],faceup(1,0,face),true) ? (
+                <img id="t2b" src={get_img_link(cards[1][0],faceup(1,0,face),true)} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau3bottom'] && (
               <button id="tableau3bottom" className={cardClass['tableau3bottom']} style={{ left: "300px", top: "330px" }} onClick={() => move("tableau3bottom")}>
-                {get_img_link(cards[2][0],faceup(2,0,face)) ? (
-                <img id="t3b" src={get_img_link(cards[2][0],faceup(2,0,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                {get_img_link(cards[2][0],faceup(2,0,face),true) ? (
+                <img id="t3b" src={get_img_link(cards[2][0],faceup(2,0,face),true)} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau4bottom'] && (
               <button id="tableau4bottom" className={cardClass['tableau4bottom']} style={{ left: "440px", top: "330px" }} onClick={() => move("tableau4bottom")}>
-                {get_img_link(cards[3][0],faceup(3,0,face)) ? (
-                <img id="t4b" src={get_img_link(cards[3][0],faceup(3,0,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                {get_img_link(cards[3][0],faceup(3,0,face),true) ? (
+                <img id="t4b" src={get_img_link(cards[3][0],faceup(3,0,face),true)} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau5bottom'] && (
               <button id="tableau5bottom" className={cardClass['tableau5bottom']} style={{ left: "580px", top: "330px" }} onClick={() => move("tableau5bottom")}>
-                {get_img_link(cards[4][0],faceup(4,0,face)) ? (
-                <img id="t5b" src={get_img_link(cards[4][0],faceup(4,0,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                {get_img_link(cards[4][0],faceup(4,0,face),true) ? (
+                <img id="t5b" src={get_img_link(cards[4][0],faceup(4,0,face),true)} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau6bottom'] && (
               <button id="tableau6bottom" className={cardClass['tableau6bottom']} style={{ left: "720px", top: "330px" }} onClick={() => move("tableau6bottom")}>
-                {get_img_link(cards[5][0],faceup(5,0,face)) ? (
-                <img id="t6b" src={get_img_link(cards[5][0],faceup(5,0,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                {get_img_link(cards[5][0],faceup(5,0,face),true) ? (
+                <img id="t6b" src={get_img_link(cards[5][0],faceup(5,0,face),true)} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau7bottom'] && (
               <button id="tableau7bottom" className={cardClass['tableau7bottom']} style={{ left: "860px", top: "330px" }} onClick={() => move("tableau7bottom")}>
-                {get_img_link(cards[6][0],faceup(6,0,face)) ? (
-                <img id="t7b" src={get_img_link(cards[6][0],faceup(6,0,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                {get_img_link(cards[6][0],faceup(6,0,face),true) ? (
+                <img id="t7b" src={get_img_link(cards[6][0],faceup(6,0,face),true)} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
@@ -1678,11 +1808,195 @@ export default function Board() { // board inspired by tic tac toe tutorial
           </div>
         </div>
         <div className="center-screen">
-        <div className="board-row">
-          <button id="reset" className="button" style={{ left: "20px", top: "750px" }}>reset</button>
+          <div className="board-row">
+            {visibility['tableau2fourteenth'] && (
+              <button id="tableau2fourteenth" className={cardClass['tableau2fourteenth']} style={{ left: "160px", top: "570px" }} onClick={() => move("tableau2fourteenth")}>
+                {get_img_link(cards[1][13],faceup(1,13,face)) ? (
+                <img id="t2frt" src={get_img_link(cards[1][13],faceup(1,13,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+            {visibility['tableau3fourteenth'] && (
+              <button id="tableau3fourteenth" className={cardClass['tableau3fourteenth']} style={{ left: "300px", top: "570px" }} onClick={() => move("tableau3fourteenth")}>
+                {get_img_link(cards[2][13],faceup(2,13,face)) ? (
+                <img id="t3frt" src={get_img_link(cards[2][13],faceup(2,13,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+            {visibility['tableau4fourteenth'] && (
+              <button id="tableau4fourteenth" className={cardClass['tableau4fourteenth']} style={{ left: "440px", top: "570px" }} onClick={() => move("tableau4fourteenth")}>
+                {get_img_link(cards[3][13],faceup(3,13,face)) ? (
+                <img id="t4frt" src={get_img_link(cards[3][13],faceup(3,13,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+            {visibility['tableau5fourteenth'] && (
+              <button id="tableau5fourteenth" className={cardClass['tableau5fourteenth']} style={{ left: "580px", top: "570px" }} onClick={() => move("tableau5fourteenth")}>
+                {get_img_link(cards[4][13],faceup(4,13,face)) ? (
+                <img id="t5frt" src={get_img_link(cards[4][13],faceup(4,13,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+            {visibility['tableau6fourteenth'] && (
+              <button id="tableau6fourteenth" className={cardClass['tableau6fourteenth']} style={{ left: "720px", top: "570px" }} onClick={() => move("tableau6fourteenth")}>
+                {get_img_link(cards[5][13],faceup(5,13,face)) ? (
+                <img id="t6frt" src={get_img_link(cards[5][13],faceup(5,13))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+            {visibility['tableau7fourteenth'] && (
+              <button id="tableau7fourteenth" className={cardClass['tableau7fourteenth']} style={{ left: "860px", top: "570px" }} onClick={() => move("tableau7fourteenth")}>
+                {get_img_link(cards[6][13],faceup(6,13,face)) ? (
+                <img id="t7frt" src={get_img_link(cards[6][13],faceup(6,13,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+          </div>
         </div>
+        <div className="center-screen">
+          <div className="board-row">
+            {visibility['tableau3fifteenth'] && (
+              <button id="tableau3fifteenth" className={cardClass['tableau3fifteenth']} style={{ left: "300px", top: "570px" }} onClick={() => move("tableau3fifteenth")}>
+                {get_img_link(cards[2][14],faceup(2,14,face)) ? (
+                <img id="t3fft" src={get_img_link(cards[2][14],faceup(2,14,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+            {visibility['tableau4fifteenth'] && (
+              <button id="tableau4fifteenth" className={cardClass['tableau4fifteenth']} style={{ left: "440px", top: "570px" }} onClick={() => move("tableau4fifteenth")}>
+                {get_img_link(cards[3][14],faceup(3,14,face)) ? (
+                <img id="t4fft" src={get_img_link(cards[3][14],faceup(3,14,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+            {visibility['tableau5fifteenth'] && (
+              <button id="tableau5fourteenth" className={cardClass['tableau5fifteenth']} style={{ left: "580px", top: "570px" }} onClick={() => move("tableau5fifteenth")}>
+                {get_img_link(cards[4][14],faceup(4,14,face)) ? (
+                <img id="t5fft" src={get_img_link(cards[4][14],faceup(4,14,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+            {visibility['tableau6fifteenth'] && (
+              <button id="tableau6fifteenth" className={cardClass['tableau6fifteenth']} style={{ left: "720px", top: "570px" }} onClick={() => move("tableau6fifteenth")}>
+                {get_img_link(cards[5][14],faceup(5,14,face)) ? (
+                <img id="t6fft" src={get_img_link(cards[5][14],faceup(5,14))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+            {visibility['tableau7fifteenth'] && (
+              <button id="tableau7fifteenth" className={cardClass['tableau7fifteenth']} style={{ left: "860px", top: "570px" }} onClick={() => move("tableau7fifteenth")}>
+                {get_img_link(cards[6][14],faceup(6,14,face)) ? (
+                <img id="t7fft" src={get_img_link(cards[6][14],faceup(6,14,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+          </div>
         </div>
+        <div className="center-screen">
+          <div className="board-row">
+            {visibility['tableau4sixteenth'] && (
+              <button id="tableau4sixteenth" className={cardClass['tableau4sixteenth']} style={{ left: "440px", top: "570px" }} onClick={() => move("tableau4sixteenth")}>
+                {get_img_link(cards[3][15],faceup(3,15,face)) ? (
+                <img id="t4sxt" src={get_img_link(cards[3][15],faceup(3,15,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+            {visibility['tableau5sixteenth'] && (
+              <button id="tableau5sixteenth" className={cardClass['tableau5sixteenth']} style={{ left: "580px", top: "570px" }} onClick={() => move("tableau5sixteenth")}>
+                {get_img_link(cards[4][15],faceup(4,15,face)) ? (
+                <img id="t5sxt" src={get_img_link(cards[4][15],faceup(4,15,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+            {visibility['tableau6sixteenth'] && (
+              <button id="tableau6sixteenth" className={cardClass['tableau6sixteenth']} style={{ left: "720px", top: "570px" }} onClick={() => move("tableau6sixteenth")}>
+                {get_img_link(cards[5][15],faceup(5,15,face)) ? (
+                <img id="t6sxt" src={get_img_link(cards[5][15],faceup(5,15))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+            {visibility['tableau7sixteenth'] && (
+              <button id="tableau7sixteenth" className={cardClass['tableau7sixteenth']} style={{ left: "860px", top: "570px" }} onClick={() => move("tableau7sixteenth")}>
+                {get_img_link(cards[6][15],faceup(6,15,face)) ? (
+                <img id="t7sxt" src={get_img_link(cards[6][15],faceup(6,15,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+          </div>
+        </div>
+        <div className="center-screen">
+          <div className="board-row">
+            {visibility['tableau5seventeenth'] && (
+              <button id="tableau5seventeenth" className={cardClass['tableau5seventeenth']} style={{ left: "580px", top: "570px" }} onClick={() => move("tableau5seventeenth")}>
+                {get_img_link(cards[4][16],faceup(4,16,face)) ? (
+                <img id="t5svt" src={get_img_link(cards[4][16],faceup(4,16,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+            {visibility['tableau6seventeenth'] && (
+              <button id="tableau6seventeenth" className={cardClass['tableau6seventeenth']} style={{ left: "720px", top: "570px" }} onClick={() => move("tableau6seventeenth")}>
+                {get_img_link(cards[5][16],faceup(5,16,face)) ? (
+                <img id="t6svt" src={get_img_link(cards[5][16],faceup(5,16))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+            {visibility['tableau7seventeenth'] && (
+              <button id="tableau7seventeenth" className={cardClass['tableau7seventeenth']} style={{ left: "860px", top: "570px" }} onClick={() => move("tableau7seventeenth")}>
+                {get_img_link(cards[6][16],faceup(6,16,face)) ? (
+                <img id="t7svt" src={get_img_link(cards[6][16],faceup(6,16,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+          </div>
+        </div>
+        <div className="center-screen">
+          <div className="board-row">
+            {visibility['tableau6eighteenth'] && (
+              <button id="tableau6eighteenth" className={cardClass['tableau6eighteenth']} style={{ left: "720px", top: "570px" }} onClick={() => move("tableau6eighteenth")}>
+                {get_img_link(cards[5][17],faceup(5,17,face)) ? (
+                <img id="t6egt" src={get_img_link(cards[5][17],faceup(5,17))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+            {visibility['tableau7eighteenth'] && (
+              <button id="tableau7eighteenth" className={cardClass['tableau7eighteenth']} style={{ left: "860px", top: "570px" }} onClick={() => move("tableau7eighteenth")}>
+                {get_img_link(cards[6][17],faceup(6,17,face)) ? (
+                <img id="t7egt" src={get_img_link(cards[6][17],faceup(6,17,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+          </div>
+        </div>
+        <div className="center-screen">
+          <div className="board-row">
+            {visibility['tableau7nineteenth'] && (
+              <button id="tableaunineteenth" className={cardClass['tableau7nineteenth']} style={{ left: "860px", top: "570px" }} onClick={() => move("tableau7nineteenth")}>
+                {get_img_link(cards[6][18],faceup(6,18,face)) ? (
+                <img id="t7nnt" src={get_img_link(cards[6][18],faceup(6,18,face))} alt="card" style={{ width: "120px", height: "168px" }} />
+                ) : null }
+              </button>
+            )}
+          </div>
+        </div>
+        <button id="placeholder" className="button2" style={{ left: "20px", top: "750px" }}></button>
+        <button id="reset" className="button1" style={{ left: "20px", top: "20px" }}>reset</button>
+        <button id="toggleDifficulty" className="button1" style={{ left: "100px", top: "20px" }} onClick={() => toggleDifficulty()}>difficulty</button>
       </>
-      // add 6 fourteen, 5 fifteen, 4 sixteen, 3 seventeen, 2 eighteen, 1 nineteen
     );
 }
+
+/* things I still need to add
+  - transport all cards below
+  - make sure you cannot move to foundation if not top card
+  - make sure can't move anything on top of it if not top card
+  - iron out bugs
+  - reset button
+  - fix sizing
+  - theres a bug with faceup tableau 6 ninth???? idk
+  - make card4
+  - add win functionality
+  - deal with invalid second click alert
+  - toggle between easy/hard
+  - auto-solve?
+  - timer?
+*/
