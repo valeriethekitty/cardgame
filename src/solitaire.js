@@ -363,7 +363,10 @@ export default function Board() { // board inspired by tic tac toe tutorial
       return link;
     }
 
-    function restart() {
+    function restart(win = false) {
+      if (!win && !confirm("are you sure you want to restart?")) {
+        return;
+      }
       setCards(Array.from({length: 7},()=> Array.from({length: 19}, () => null)));
       deck = new Deck;
       setFace(Array.from({length: 7},()=> Array.from({length: 19}, () => null)));
@@ -627,7 +630,7 @@ export default function Board() { // board inspired by tic tac toe tutorial
       }
       return false;
     }
-
+    
     function newLocation(id) {
       let card = null; 
       let numb = null;
@@ -738,8 +741,6 @@ export default function Board() { // board inspired by tic tac toe tutorial
       let j = null;
       let numb2 = null;
       if (id[0] == 'f') {
-        console.log(isTop(x, y));
-        console.log(cards);
         if (firstClick[0] != 't' || isTop(x, y)) {
           result = id;
           let match = id[10];
@@ -963,8 +964,8 @@ export default function Board() { // board inspired by tic tac toe tutorial
       }
       return result;
     }
-
     function draw() {
+      setFirstClick(null);
       let new_discard = discard.slice();
       let new_drawpile = drawpile.slice();
       if (new_drawpile.length == 0) {
@@ -982,9 +983,19 @@ export default function Board() { // board inspired by tic tac toe tutorial
           new_discard.push(new_drawpile.shift());
           num_drawn++;
         }
+        setVisibility(prevState => ({
+          ...prevState,
+          ["discard2"]: true,
+          ["discard3"]: true,
+        }))
       }
       else {
         new_discard.push(new_drawpile.shift());
+        setVisibility(prevState => ({
+          ...prevState,
+          ["discard2"]: false,
+          ["discard3"]: false,
+        }))
       }
       if (new_discard.length - 1 >= 0) {
         setCardClass(prevState => ({
@@ -1073,6 +1084,22 @@ export default function Board() { // board inspired by tic tac toe tutorial
           ["discard2"]: false,
           ["discard3"]: false,
         }));
+      }
+    }
+
+    function isWin() {
+      if (piles[0][0] == null || piles[1][0] == null || piles[2][0] == null || piles[3][0] == null) {
+        return false;
+      }
+      if (piles[0][0].match(/\d+/) == "13" && piles[1][0].match(/\d+/) == "13" && piles[2][0].match(/\d+/) == "13" && piles[3][0].match(/\d+/) == "13") {
+        return true;
+      }
+      return false;
+    }
+
+    if(isWin()) {
+      if(confirm("congratulations on winning! would you like to restart?")) {
+        restart(true);
       }
     }
   
@@ -2000,7 +2027,11 @@ export default function Board() { // board inspired by tic tac toe tutorial
         </div>
         <button id="placeholder" className="button2" style={{ left: "20px", top: "750px" }}></button>
         <button id="reset" className="button1" style={{ left: "20px", top: "20px" }} onClick={() => restart()}>reset</button>
-        <button id="toggleDifficulty" className="button1" style={{ left: "100px", top: "20px" }} onClick={() => toggleDifficulty()}>difficulty</button>
+        <button id="toggleDifficulty" className="button1" style={{ left: "100px", top: "20px" }} onClick={() => toggleDifficulty()}>
+          {hardMode ? (
+            "go to easy mode"
+          ) : "go to hard mode" }
+        </button>
       </>
     );
 }
@@ -2008,9 +2039,8 @@ export default function Board() { // board inspired by tic tac toe tutorial
 /* things I still need to add
   - transport all cards below
   - iron out bugs
-  - fix sizing
+  - fix sizing (particularly of the newly added tableau slots)
   - theres a bug with faceup tableau 6 ninth???? idk, fixed by going around the issue, not happy
-  - add win functionality
   - deal with invalid second click alert
   - auto-solve?
   - timer?
