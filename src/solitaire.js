@@ -296,7 +296,7 @@ export default function Board() { // board inspired by tic tac toe tutorial
     }
 
     function faceup(i, j, face) {
-      return face[i][j];
+      return (i == 5 && j >= 8) ? true : face[i][j];
     }
 
     function dp_is_empty() {
@@ -365,7 +365,7 @@ export default function Board() { // board inspired by tic tac toe tutorial
 
     function restart() {
       setCards(Array.from({length: 7},()=> Array.from({length: 19}, () => null)));
-      drawpile.reset();
+      deck = new Deck;
       setFace(Array.from({length: 7},()=> Array.from({length: 19}, () => null)));
       setPiles(Array.from({length: 4},()=> Array.from({length: 13}, () => null)));
       setDrawpile([]);
@@ -618,6 +618,16 @@ export default function Board() { // board inspired by tic tac toe tutorial
       setStart(true);
     }
 
+    function isTop(i, j) {
+      if (j < i + 13 && cards[i][j] != null && cards[i][j+1] == null) {
+        return true;
+      }
+      if (j == 0 && cards[i][j+1] == null) {
+        return true;
+      }
+      return false;
+    }
+
     function newLocation(id) {
       let card = null; 
       let numb = null;
@@ -728,11 +738,18 @@ export default function Board() { // board inspired by tic tac toe tutorial
       let j = null;
       let numb2 = null;
       if (id[0] == 'f') {
-        result = id;
-        let match = id[10];
-        numb2 = parseInt(match) - 1;
-        potential_card = piles[numb2][0];
-        foundation = true;
+        console.log(isTop(x, y));
+        console.log(cards);
+        if (firstClick[0] != 't' || isTop(x, y)) {
+          result = id;
+          let match = id[10];
+          numb2 = parseInt(match) - 1;
+          potential_card = piles[numb2][0];
+          foundation = true;
+        }
+        else {
+          result = null;
+        }
       }
       else if (id[0] == 't') {
         let testString = id.substring(8);
@@ -855,9 +872,12 @@ export default function Board() { // board inspired by tic tac toe tutorial
             result = null;
         }
         potential_card = cards[i][j];
+        if (!isTop(i,j)) {
+          return null;
+        }
       }
       else {
-        return null;
+        return null;        
       }
 
       let potential_card_value = potential_card ? potential_card.match(/\d+/) : null; // get the value of the card to be moved to
@@ -889,6 +909,12 @@ export default function Board() { // board inspired by tic tac toe tutorial
       let newCards = cards.slice();
       let newFace = face.slice();
       if(!foundation) {
+        if ((card_suit == 'S' || card_suit == 'C') && (potential_card_suit == 'S' || potential_card_suit == 'C')) { // if new suit is black, return null if potential suit is black too
+          return null;
+        }
+        if ((card_suit == 'H' || card_suit == 'D') && (potential_card_suit == 'H' || potential_card_suit == 'D')) { // same with red
+          return null;
+        }  
         if (value2 != null) {
           if (value != value2 - 1) {
             return null;
@@ -904,12 +930,6 @@ export default function Board() { // board inspired by tic tac toe tutorial
           newCards[i][0] = card;
           newFace[i][0] = true;
         }
-        if ((card_suit == 'S' || card_suit == 'C') && (potential_card_suit == 'S' || potential_card_suit == 'C')) { // if new suit is black, return null if potential suit is black too
-          return null;
-        }
-        if ((card_suit == 'H' || card_suit == 'D') && (potential_card_suit == 'H' || potential_card_suit == 'D')) { // same with red
-          return null;
-        }  
       }
       if (y > 0) {
         newFace[x][y-1] = true;
@@ -1979,7 +1999,7 @@ export default function Board() { // board inspired by tic tac toe tutorial
           </div>
         </div>
         <button id="placeholder" className="button2" style={{ left: "20px", top: "750px" }}></button>
-        <button id="reset" className="button1" style={{ left: "20px", top: "20px" }}>reset</button>
+        <button id="reset" className="button1" style={{ left: "20px", top: "20px" }} onClick={() => restart()}>reset</button>
         <button id="toggleDifficulty" className="button1" style={{ left: "100px", top: "20px" }} onClick={() => toggleDifficulty()}>difficulty</button>
       </>
     );
@@ -1987,16 +2007,11 @@ export default function Board() { // board inspired by tic tac toe tutorial
 
 /* things I still need to add
   - transport all cards below
-  - make sure you cannot move to foundation if not top card
-  - make sure can't move anything on top of it if not top card
   - iron out bugs
-  - reset button
   - fix sizing
-  - theres a bug with faceup tableau 6 ninth???? idk
-  - make card4
+  - theres a bug with faceup tableau 6 ninth???? idk, fixed by going around the issue, not happy
   - add win functionality
   - deal with invalid second click alert
-  - toggle between easy/hard
   - auto-solve?
   - timer?
 */
