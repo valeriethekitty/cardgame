@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Deck } from "./deck.js";
 import { Card } from "./globals.js"
 
@@ -256,6 +256,9 @@ export default function Board() { // board inspired by tic tac toe tutorial
     tableau7nineteenth: 'card',
   });
   const [firstClick, setFirstClick] = useState(null);
+  const [seconds, setSeconds] = useState(0);
+  const timerRef = useRef(null);
+
   var deck = new Deck;
     if (start) { // shuffle and deal
       deck.shuffle();
@@ -274,7 +277,18 @@ export default function Board() { // board inspired by tic tac toe tutorial
       }
       setFace(newFace);
       setStart(false);
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+      setSeconds(0);
+      timerRef.current = setInterval(() => {
+        setSeconds((prevSeconds) => prevSeconds + 1);
+      }, 1000);
     }
+
+    useEffect(() => {
+      return () => clearInterval(timerRef.current);
+    }, []);
   
     function deal() {
       let newCards = Array.from({length: 7},()=> Array.from({length: 19}, () => null));
@@ -367,6 +381,7 @@ export default function Board() { // board inspired by tic tac toe tutorial
       if (!win && !confirm("are you sure you want to restart?")) {
         return;
       }
+
       setCards(Array.from({length: 7},()=> Array.from({length: 19}, () => null)));
       deck = new Deck;
       setFace(Array.from({length: 7},()=> Array.from({length: 19}, () => null)));
@@ -1210,6 +1225,32 @@ export default function Board() { // board inspired by tic tac toe tutorial
       if(confirm("congratulations on winning! would you like to restart?")) {
         restart(true);
       }
+    }
+
+    function getTime() {
+      let result;
+      let hours = 0;
+      if (seconds > 3600) {
+        hours = (seconds - seconds % 3600)/3600;
+        result = hours.toString() + ":";
+      }
+      else {
+        result = "0:";
+      }
+      let minutes = 0; 
+      if (seconds > 60) {
+        minutes = (seconds-seconds % 60)/60 - hours*60;
+      }
+      let remainder = seconds % 60;
+      if (minutes < 10) {
+        result += "0";
+      }
+      result += minutes.toString();
+      result += ":";
+      if (remainder < 10) {
+        result += "0";
+      }
+      return result + remainder.toString();
     }
   
     return ( // return the board object
@@ -2141,6 +2182,9 @@ export default function Board() { // board inspired by tic tac toe tutorial
             "go to easy mode"
           ) : "go to hard mode" }
         </button>
+        <div>
+          <button className="button1" style={{ left: "800px", top: "20px" }}> Time: {getTime()}</button>
+        </div>
       </>
     );
 }
@@ -2151,5 +2195,4 @@ export default function Board() { // board inspired by tic tac toe tutorial
   - theres a bug with faceup tableau 6 ninth???? idk, fixed by going around the issue, not happy
   - deal with invalid second click alert
   - auto-solve?
-  - timer?
 */
