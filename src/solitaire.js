@@ -630,6 +630,73 @@ export default function Board() { // board inspired by tic tac toe tutorial
       }
       return false;
     }
+
+    function getName(i, j) {
+      i += 1;
+      let result = "tableau" + i.toString();
+      switch(j) {
+        case 0:
+          result += "bottom";
+          break;
+        case 1:
+          result += "second";
+          break;
+        case 2:
+          result += "third";
+          break;
+        case 3:
+          result += "fourth";
+          break;
+        case 4:
+          result += "fifth";
+          break;
+        case 5:
+          result += "sixth";
+          break;
+        case  6:
+          result += "seventh";
+          break;
+        case 7:
+          result += "eighth";
+          break;
+        case 8:
+          result += "ninth";
+          break;
+        case 9:
+          result += "tenth";
+          break;
+        case 10:
+          result += "eleventh";
+          break;
+        case 11:
+          result += "twelfth";
+          break;
+        case 12:
+          result += "thirteenth";
+          break;
+        case 13:
+          result += "fourteenth";
+          break;
+        case 14:
+          result += "fifteenth";
+          break;
+        case 15:
+          result += "sixteenth";
+          break;
+        case 16:
+          result += "seventeenth";
+          break;
+        case 17:
+          result += "eighteenth";
+          break;
+        case 18:
+          result += "nineteenth";
+          break;
+        default:
+          result = null;
+      }
+      return result;
+    }
     
     function newLocation(id) {
       let card = null; 
@@ -922,6 +989,28 @@ export default function Board() { // board inspired by tic tac toe tutorial
           }
           newCards[i][j+1] = card;
           newFace[i][j+1] = true;
+          if (firstClick[0] == 't') {
+            for (let k = y+1; k < 19; k++) {
+              if (cards[x][k] == null) {
+                break;
+              }
+              newCards[i][j+k-y+1] = cards[x][k];
+              newCards[x][k] = null;
+              newFace[i][j+k-y+1] = true;
+              console.log(getName(x,k), getName(i, j+k-y+1));
+              setVisibility(prevState => ({
+                ...prevState,
+                [getName(x,k)]: false,
+                [getName(i, j+k-y+1)]: true,
+              }));
+              setCardClass(prevState => ({
+                ...prevState,
+                [getName(x,k)]: "card",
+                [getName(i, j+k-y+1)]: "card2",
+              }))
+            }
+            console.log(visibility);
+          }
         }
         else {
           if (value != 13) {
@@ -930,6 +1019,26 @@ export default function Board() { // board inspired by tic tac toe tutorial
           moveKing = true;
           newCards[i][0] = card;
           newFace[i][0] = true;
+          if (firstClick[0] == 't') {
+            for (let k = y+1; k < 19; k++) {
+              if (cards[x][k] == null) {
+                break;
+              }
+              newCards[i][k-y+1] = cards[x][k];
+              newCards[x][k] = null;
+              newFace[i][k-y+1] = true;
+              setVisibility(prevState => ({
+                ...prevState,
+                [getName(x,k)]: false,
+                [getName(i, k-y+1)]: true,
+              }));
+              setCardClass(prevState => ({
+                ...prevState,
+                [getName(x,k)]: "card",
+                [getName(i, j+k-y+1)]: "card2",
+              }))
+            }
+          }
         }
       }
       if (y > 0) {
@@ -2037,7 +2146,6 @@ export default function Board() { // board inspired by tic tac toe tutorial
 }
 
 /* things I still need to add
-  - transport all cards below
   - iron out bugs
   - fix sizing (particularly of the newly added tableau slots)
   - theres a bug with faceup tableau 6 ninth???? idk, fixed by going around the issue, not happy
