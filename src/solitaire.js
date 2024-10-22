@@ -3,6 +3,7 @@ import { Deck } from "./deck.js";
 import { Card } from "./globals.js"
 
 let hardMode = true;
+let denied = false;
 
 export default function Board() { // board inspired by tic tac toe tutorial
   const [cards, setCards] = useState(Array.from({length: 7},()=> Array.from({length: 19}, () => null)));
@@ -381,9 +382,9 @@ export default function Board() { // board inspired by tic tac toe tutorial
       if (!win && !confirm("are you sure you want to restart?")) {
         return;
       }
-
       setCards(Array.from({length: 7},()=> Array.from({length: 19}, () => null)));
       deck = new Deck;
+      denied = false;
       setFace(Array.from({length: 7},()=> Array.from({length: 19}, () => null)));
       setPiles(Array.from({length: 4},()=> Array.from({length: 13}, () => null)));
       setDrawpile([]);
@@ -1012,7 +1013,6 @@ export default function Board() { // board inspired by tic tac toe tutorial
               newCards[i][j+k-y+1] = cards[x][k];
               newCards[x][k] = null;
               newFace[i][j+k-y+1] = true;
-              console.log(getName(x,k), getName(i, j+k-y+1));
               setVisibility(prevState => ({
                 ...prevState,
                 [getName(x,k)]: false,
@@ -1024,7 +1024,6 @@ export default function Board() { // board inspired by tic tac toe tutorial
                 [getName(i, j+k-y+1)]: "card2",
               }))
             }
-            console.log(visibility);
           }
         }
         else {
@@ -1039,18 +1038,18 @@ export default function Board() { // board inspired by tic tac toe tutorial
               if (cards[x][k] == null) {
                 break;
               }
-              newCards[i][k-y+1] = cards[x][k];
+              newCards[i][k-y] = cards[x][k];
               newCards[x][k] = null;
-              newFace[i][k-y+1] = true;
+              newFace[i][k-y] = true;
               setVisibility(prevState => ({
                 ...prevState,
                 [getName(x,k)]: false,
-                [getName(i, k-y+1)]: true,
+                [getName(i, k-y)]: true,
               }));
               setCardClass(prevState => ({
                 ...prevState,
                 [getName(x,k)]: "card",
-                [getName(i, j+k-y+1)]: "card2",
+                [getName(i, k-y)]: "card2",
               }))
             }
           }
@@ -1216,15 +1215,21 @@ export default function Board() { // board inspired by tic tac toe tutorial
         return false;
       }
       if (piles[0][0].match(/\d+/) == "13" && piles[1][0].match(/\d+/) == "13" && piles[2][0].match(/\d+/) == "13" && piles[3][0].match(/\d+/) == "13") {
+        if (timerRef.current) {
+          clearInterval(timerRef.current);
+        }
         return true;
       }
       return false;
     }
 
-    if(isWin()) {
+    if(denied == false && isWin()) {
       if(confirm("congratulations on winning! would you like to restart?")) {
         restart(true);
       }
+      else {
+        denied = true;
+      } 
     }
 
     function getTime() {
@@ -1251,6 +1256,37 @@ export default function Board() { // board inspired by tic tac toe tutorial
         result += "0";
       }
       return result + remainder.toString();
+    }
+
+    function solve() {
+      
+    }
+
+    function autoSolve() {
+      if ((discard.length == 0 && drawpile.length == 0) || !hardMode) {
+        for (let i = 0; i < 7; i++) {
+          for (let j = 0; j <= i; j++) {
+            if (face[i][j] == false) {
+              if (hardMode) {
+                alert("sorry, autosolve unavailable until discard/draw piles are empty and all tableau cards are face up");
+              }
+              else {
+                alert("sorry, autosolve unavailable until all tableau cards are face up");
+              }
+              return;
+            }
+          }
+        }
+        solve();
+        return;
+      }
+      if (hardMode) {
+        alert("sorry, autosolve unavailable until discard/draw piles are empty and all tableau cards are face up");
+      }
+      else {
+        alert("sorry, autosolve unavailable until all tableau cards are face up");
+      }
+      return;
     }
   
     return ( // return the board object
@@ -2182,6 +2218,7 @@ export default function Board() { // board inspired by tic tac toe tutorial
             "go to easy mode"
           ) : "go to hard mode" }
         </button>
+        <button id="autosolve" className="button1" style={{ left: "300px", top: "20px" }} onClick={() => autoSolve()}>autosolve</button>
         <div>
           <button className="button1" style={{ left: "800px", top: "20px" }}> Time: {getTime()}</button>
         </div>
@@ -2191,8 +2228,10 @@ export default function Board() { // board inspired by tic tac toe tutorial
 
 /* things I still need to add
   - iron out bugs
+    - if you move the king with its lower cards to a free slot, there is a gap between the king and the first card
   - fix sizing (particularly of the newly added tableau slots)
   - theres a bug with faceup tableau 6 ninth???? idk, fixed by going around the issue, not happy
   - deal with invalid second click alert
   - auto-solve?
+  - tried to reset at one point and got a reading 0 error
 */
