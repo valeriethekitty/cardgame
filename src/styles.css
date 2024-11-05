@@ -64,10 +64,10 @@ body {
   text-decoration: none;
   display: inline-block;
   font-family: fantasy;
-  font-size: 64px;
+  font-size: 55px;
   transition-duration: 0.4s;
   cursor: pointer;
-  position: relative;
+  position: absolute;
 }
 
 .button1 {

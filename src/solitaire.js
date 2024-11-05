@@ -2353,42 +2353,42 @@ export default function Board() { // board inspired by tic tac toe tutorial
         <div className="center-screen">
           <div className="board-row">
             {visibility['tableau2fourteenth'] && (
-              <button id="tableau2fourteenth" className={cardClass['tableau2fourteenth']} style={{ left: "160px", top: "570px" }} onClick={() => move("tableau2fourteenth")}>
+              <button id="tableau2fourteenth" className={cardClass['tableau2fourteenth']} style={{ left: "160px", top: "590px" }} onClick={() => move("tableau2fourteenth")}>
                 {get_img_link(cards[1][13],faceup(1,13,face)) ? (
                 <img id="t2frt" src={get_img_link(cards[1][13],faceup(1,13,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau3fourteenth'] && (
-              <button id="tableau3fourteenth" className={cardClass['tableau3fourteenth']} style={{ left: "300px", top: "570px" }} onClick={() => move("tableau3fourteenth")}>
+              <button id="tableau3fourteenth" className={cardClass['tableau3fourteenth']} style={{ left: "300px", top: "590px" }} onClick={() => move("tableau3fourteenth")}>
                 {get_img_link(cards[2][13],faceup(2,13,face)) ? (
                 <img id="t3frt" src={get_img_link(cards[2][13],faceup(2,13,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau4fourteenth'] && (
-              <button id="tableau4fourteenth" className={cardClass['tableau4fourteenth']} style={{ left: "440px", top: "570px" }} onClick={() => move("tableau4fourteenth")}>
+              <button id="tableau4fourteenth" className={cardClass['tableau4fourteenth']} style={{ left: "440px", top: "590px" }} onClick={() => move("tableau4fourteenth")}>
                 {get_img_link(cards[3][13],faceup(3,13,face)) ? (
                 <img id="t4frt" src={get_img_link(cards[3][13],faceup(3,13,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau5fourteenth'] && (
-              <button id="tableau5fourteenth" className={cardClass['tableau5fourteenth']} style={{ left: "580px", top: "570px" }} onClick={() => move("tableau5fourteenth")}>
+              <button id="tableau5fourteenth" className={cardClass['tableau5fourteenth']} style={{ left: "580px", top: "590px" }} onClick={() => move("tableau5fourteenth")}>
                 {get_img_link(cards[4][13],faceup(4,13,face)) ? (
                 <img id="t5frt" src={get_img_link(cards[4][13],faceup(4,13,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau6fourteenth'] && (
-              <button id="tableau6fourteenth" className={cardClass['tableau6fourteenth']} style={{ left: "720px", top: "570px" }} onClick={() => move("tableau6fourteenth")}>
+              <button id="tableau6fourteenth" className={cardClass['tableau6fourteenth']} style={{ left: "720px", top: "590px" }} onClick={() => move("tableau6fourteenth")}>
                 {get_img_link(cards[5][13],faceup(5,13,face)) ? (
                 <img id="t6frt" src={get_img_link(cards[5][13],faceup(5,13))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau7fourteenth'] && (
-              <button id="tableau7fourteenth" className={cardClass['tableau7fourteenth']} style={{ left: "860px", top: "570px" }} onClick={() => move("tableau7fourteenth")}>
+              <button id="tableau7fourteenth" className={cardClass['tableau7fourteenth']} style={{ left: "860px", top: "590px" }} onClick={() => move("tableau7fourteenth")}>
                 {get_img_link(cards[6][13],faceup(6,13,face)) ? (
                 <img id="t7frt" src={get_img_link(cards[6][13],faceup(6,13,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
@@ -2399,35 +2399,35 @@ export default function Board() { // board inspired by tic tac toe tutorial
         <div className="center-screen">
           <div className="board-row">
             {visibility['tableau3fifteenth'] && (
-              <button id="tableau3fifteenth" className={cardClass['tableau3fifteenth']} style={{ left: "300px", top: "570px" }} onClick={() => move("tableau3fifteenth")}>
+              <button id="tableau3fifteenth" className={cardClass['tableau3fifteenth']} style={{ left: "300px", top: "610px" }} onClick={() => move("tableau3fifteenth")}>
                 {get_img_link(cards[2][14],faceup(2,14,face)) ? (
                 <img id="t3fft" src={get_img_link(cards[2][14],faceup(2,14,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau4fifteenth'] && (
-              <button id="tableau4fifteenth" className={cardClass['tableau4fifteenth']} style={{ left: "440px", top: "570px" }} onClick={() => move("tableau4fifteenth")}>
+              <button id="tableau4fifteenth" className={cardClass['tableau4fifteenth']} style={{ left: "440px", top: "610px" }} onClick={() => move("tableau4fifteenth")}>
                 {get_img_link(cards[3][14],faceup(3,14,face)) ? (
                 <img id="t4fft" src={get_img_link(cards[3][14],faceup(3,14,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau5fifteenth'] && (
-              <button id="tableau5fourteenth" className={cardClass['tableau5fifteenth']} style={{ left: "580px", top: "570px" }} onClick={() => move("tableau5fifteenth")}>
+              <button id="tableau5fourteenth" className={cardClass['tableau5fifteenth']} style={{ left: "580px", top: "610px" }} onClick={() => move("tableau5fifteenth")}>
                 {get_img_link(cards[4][14],faceup(4,14,face)) ? (
                 <img id="t5fft" src={get_img_link(cards[4][14],faceup(4,14,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau6fifteenth'] && (
-              <button id="tableau6fifteenth" className={cardClass['tableau6fifteenth']} style={{ left: "720px", top: "570px" }} onClick={() => move("tableau6fifteenth")}>
+              <button id="tableau6fifteenth" className={cardClass['tableau6fifteenth']} style={{ left: "720px", top: "610px" }} onClick={() => move("tableau6fifteenth")}>
                 {get_img_link(cards[5][14],faceup(5,14,face)) ? (
                 <img id="t6fft" src={get_img_link(cards[5][14],faceup(5,14))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau7fifteenth'] && (
-              <button id="tableau7fifteenth" className={cardClass['tableau7fifteenth']} style={{ left: "860px", top: "570px" }} onClick={() => move("tableau7fifteenth")}>
+              <button id="tableau7fifteenth" className={cardClass['tableau7fifteenth']} style={{ left: "860px", top: "610px" }} onClick={() => move("tableau7fifteenth")}>
                 {get_img_link(cards[6][14],faceup(6,14,face)) ? (
                 <img id="t7fft" src={get_img_link(cards[6][14],faceup(6,14,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
@@ -2438,28 +2438,28 @@ export default function Board() { // board inspired by tic tac toe tutorial
         <div className="center-screen">
           <div className="board-row">
             {visibility['tableau4sixteenth'] && (
-              <button id="tableau4sixteenth" className={cardClass['tableau4sixteenth']} style={{ left: "440px", top: "570px" }} onClick={() => move("tableau4sixteenth")}>
+              <button id="tableau4sixteenth" className={cardClass['tableau4sixteenth']} style={{ left: "440px", top: "630px" }} onClick={() => move("tableau4sixteenth")}>
                 {get_img_link(cards[3][15],faceup(3,15,face)) ? (
                 <img id="t4sxt" src={get_img_link(cards[3][15],faceup(3,15,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau5sixteenth'] && (
-              <button id="tableau5sixteenth" className={cardClass['tableau5sixteenth']} style={{ left: "580px", top: "570px" }} onClick={() => move("tableau5sixteenth")}>
+              <button id="tableau5sixteenth" className={cardClass['tableau5sixteenth']} style={{ left: "580px", top: "630px" }} onClick={() => move("tableau5sixteenth")}>
                 {get_img_link(cards[4][15],faceup(4,15,face)) ? (
                 <img id="t5sxt" src={get_img_link(cards[4][15],faceup(4,15,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau6sixteenth'] && (
-              <button id="tableau6sixteenth" className={cardClass['tableau6sixteenth']} style={{ left: "720px", top: "570px" }} onClick={() => move("tableau6sixteenth")}>
+              <button id="tableau6sixteenth" className={cardClass['tableau6sixteenth']} style={{ left: "720px", top: "630px" }} onClick={() => move("tableau6sixteenth")}>
                 {get_img_link(cards[5][15],faceup(5,15,face)) ? (
                 <img id="t6sxt" src={get_img_link(cards[5][15],faceup(5,15))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau7sixteenth'] && (
-              <button id="tableau7sixteenth" className={cardClass['tableau7sixteenth']} style={{ left: "860px", top: "570px" }} onClick={() => move("tableau7sixteenth")}>
+              <button id="tableau7sixteenth" className={cardClass['tableau7sixteenth']} style={{ left: "860px", top: "630px" }} onClick={() => move("tableau7sixteenth")}>
                 {get_img_link(cards[6][15],faceup(6,15,face)) ? (
                 <img id="t7sxt" src={get_img_link(cards[6][15],faceup(6,15,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
@@ -2470,21 +2470,21 @@ export default function Board() { // board inspired by tic tac toe tutorial
         <div className="center-screen">
           <div className="board-row">
             {visibility['tableau5seventeenth'] && (
-              <button id="tableau5seventeenth" className={cardClass['tableau5seventeenth']} style={{ left: "580px", top: "570px" }} onClick={() => move("tableau5seventeenth")}>
+              <button id="tableau5seventeenth" className={cardClass['tableau5seventeenth']} style={{ left: "580px", top: "650px" }} onClick={() => move("tableau5seventeenth")}>
                 {get_img_link(cards[4][16],faceup(4,16,face)) ? (
                 <img id="t5svt" src={get_img_link(cards[4][16],faceup(4,16,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau6seventeenth'] && (
-              <button id="tableau6seventeenth" className={cardClass['tableau6seventeenth']} style={{ left: "720px", top: "570px" }} onClick={() => move("tableau6seventeenth")}>
+              <button id="tableau6seventeenth" className={cardClass['tableau6seventeenth']} style={{ left: "720px", top: "650px" }} onClick={() => move("tableau6seventeenth")}>
                 {get_img_link(cards[5][16],faceup(5,16,face)) ? (
                 <img id="t6svt" src={get_img_link(cards[5][16],faceup(5,16))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau7seventeenth'] && (
-              <button id="tableau7seventeenth" className={cardClass['tableau7seventeenth']} style={{ left: "860px", top: "570px" }} onClick={() => move("tableau7seventeenth")}>
+              <button id="tableau7seventeenth" className={cardClass['tableau7seventeenth']} style={{ left: "860px", top: "650px" }} onClick={() => move("tableau7seventeenth")}>
                 {get_img_link(cards[6][16],faceup(6,16,face)) ? (
                 <img id="t7svt" src={get_img_link(cards[6][16],faceup(6,16,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
@@ -2495,14 +2495,14 @@ export default function Board() { // board inspired by tic tac toe tutorial
         <div className="center-screen">
           <div className="board-row">
             {visibility['tableau6eighteenth'] && (
-              <button id="tableau6eighteenth" className={cardClass['tableau6eighteenth']} style={{ left: "720px", top: "570px" }} onClick={() => move("tableau6eighteenth")}>
+              <button id="tableau6eighteenth" className={cardClass['tableau6eighteenth']} style={{ left: "720px", top: "670px" }} onClick={() => move("tableau6eighteenth")}>
                 {get_img_link(cards[5][17],faceup(5,17,face)) ? (
                 <img id="t6egt" src={get_img_link(cards[5][17],faceup(5,17))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
               </button>
             )}
             {visibility['tableau7eighteenth'] && (
-              <button id="tableau7eighteenth" className={cardClass['tableau7eighteenth']} style={{ left: "860px", top: "570px" }} onClick={() => move("tableau7eighteenth")}>
+              <button id="tableau7eighteenth" className={cardClass['tableau7eighteenth']} style={{ left: "860px", top: "670px" }} onClick={() => move("tableau7eighteenth")}>
                 {get_img_link(cards[6][17],faceup(6,17,face)) ? (
                 <img id="t7egt" src={get_img_link(cards[6][17],faceup(6,17,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
@@ -2513,7 +2513,7 @@ export default function Board() { // board inspired by tic tac toe tutorial
         <div className="center-screen">
           <div className="board-row">
             {visibility['tableau7nineteenth'] && (
-              <button id="tableaunineteenth" className={cardClass['tableau7nineteenth']} style={{ left: "860px", top: "570px" }} onClick={() => move("tableau7nineteenth")}>
+              <button id="tableaunineteenth" className={cardClass['tableau7nineteenth']} style={{ left: "860px", top: "690px" }} onClick={() => move("tableau7nineteenth")}>
                 {get_img_link(cards[6][18],faceup(6,18,face)) ? (
                 <img id="t7nnt" src={get_img_link(cards[6][18],faceup(6,18,face))} alt="card" style={{ width: "120px", height: "168px" }} />
                 ) : null }
@@ -2530,15 +2530,13 @@ export default function Board() { // board inspired by tic tac toe tutorial
         </button>
         <button id="autosolve" className="button1" style={{ left: "300px", top: "20px" }} onClick={() => autoSolve()}>autosolve</button>
         <div>
-          <button className="button1" style={{ left: "800px", top: "20px" }}> Time: {getTime()}</button>
+          <button className="button1" style={{ left: "850px", top: "20px" }}> Time: {getTime()}</button>
         </div>
       </>
     );
 }
 
 /* things I still need to add
-  - iron out bugs
-  - fix sizing (particularly of the newly added tableau slots)
   - theres a bug with faceup tableau 6 ninth???? idk, fixed by going around the issue, not happy
   - deal with invalid second click alert
 */
