@@ -293,10 +293,10 @@ export default function Board() { // board inspired by tic tac toe tutorial
   
     function deal() {
       let newCards = Array.from({length: 7},()=> Array.from({length: 19}, () => null));
-      let dealt = Array.from({length: 7},()=> Array.from({length: 19}, () => null)); // fix this so that we only keep this and not the other
+      let dealt = Array.from({length: 7},()=> Array.from({length: 19}, () => null)); 
       for (let i = 0; i < 7; i++) {
         for (let j = 0; j < i + 1; j++) {
-          if (deck.m_size <= 0) { // figure out why it goes back in here???
+          if (deck.m_size <= 0) {
             break;
           }
           dealt[i][j] = deck.deal_top();
@@ -331,7 +331,7 @@ export default function Board() { // board inspired by tic tac toe tutorial
     }
 
     function get_img_link(card, faceup, show_empty = false) {
-      if (card == null && faceup != false) { // fix
+      if (card == null && faceup != false) { 
         if (show_empty) {
           return "/images/discard.png";
         }
@@ -1081,6 +1081,7 @@ export default function Board() { // board inspired by tic tac toe tutorial
           [newTop]: "card2",
         }));
       }
+      setFace(newFace);
       if (moveKing) {
         return result.substring(0, 8) + "bottom";
       }
@@ -1130,10 +1131,6 @@ export default function Board() { // board inspired by tic tac toe tutorial
     }
 
     function move(id) {
-      console.log("cards");
-      console.log(cards);
-      console.log("visibility");
-      console.log(visibility);
       if (cardClass[id] == "card") {
         if (id[0] != 'f') {
           return;
@@ -2536,6 +2533,6 @@ export default function Board() { // board inspired by tic tac toe tutorial
     );
 }
 
-/* things I still need to add
-  - theres a bug with faceup tableau 6 ninth???? idk, fixed by going around the issue, not happy
+/* things for future thought
+  - theres a bug with faceup tableau 6 ninth, face becomes undefined, and I am unable to figure out why
 */
