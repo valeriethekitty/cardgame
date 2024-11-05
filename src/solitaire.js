@@ -1071,12 +1071,11 @@ export default function Board() { // board inspired by tic tac toe tutorial
       else if (firstClick[0] == 'f') {
         let newPiles = piles.slice();
         newPiles[numb].shift();
-        newPiles.push(null);
+        newPiles[numb].push(null); 
         setPiles(newPiles);
       }
       setCards(newCards);
       if (newTop != null) {
-        let t = "card2";
         setCardClass(prevState => ({
           ...prevState,
           [newTop]: "card2",
@@ -1131,6 +1130,10 @@ export default function Board() { // board inspired by tic tac toe tutorial
     }
 
     function move(id) {
+      console.log("cards");
+      console.log(cards);
+      console.log("visibility");
+      console.log(visibility);
       if (cardClass[id] == "card") {
         if (id[0] != 'f') {
           return;
@@ -1259,7 +1262,314 @@ export default function Board() { // board inspired by tic tac toe tutorial
     }
 
     function solve() {
-      
+      setCards(Array.from({length: 7},()=> Array.from({length: 19}, () => null)));
+      setDiscard([]);
+      setDrawpile([]);
+      let newPiles = piles.slice();
+      let suits = Array.from({length: 4}, () => null);
+      for (let i = 0; i < 4; i++) {
+        if (piles[i][0] == null) {
+          let suit = piles[i][0][piles[i][0].length-1];
+          switch(suit) {
+            case 'D':
+              suits[0] = i;
+              break;
+            case 'C':
+              suits[1] = i;
+              break;
+            case 'H':
+              suits[2] = i;
+              break;
+            case 'S':
+              suits[3] = i;
+              break;
+            default:
+              break;
+          }
+        }
+      }
+      for (let i = 0; i < 4; i++) {
+        if (piles[i][0] == null) {
+          for (let j = 0; j < 4; j++) {
+            if (suits[j] == null) {
+              suits[j] = i;
+              let suit;
+              switch(j) {
+                case 0:
+                  suit = 'D';
+                  break;
+                case 1:
+                  suit = 'C';
+                  break;
+                case 2:
+                  suit = 'H';
+                  break;
+                case 3:
+                  suit = 'S';
+                  break;
+                default:
+                  break;
+              }
+              newPiles[i][0] = "1" + suit;
+              break;
+            }
+          }
+        }
+      }
+      for (let i = 0; i < 4; i++) {
+        let card_value = newPiles[i][0].match(/\d+/); // get the value of the card to be moved
+        let value = parseInt(card_value);
+        let suit = piles[i][0][piles[i][0].length-1];
+        for (let j = value+1; j <= 13; j++) {
+          newPiles[i].pop();
+          newPiles[i].unshift(j.toString() + suit);
+        }
+      }
+      setPiles(newPiles);
+      setCardClass({
+        stockpile: 'card',
+        discard1: 'card',
+        discard2: 'card',
+        discard3: 'card',
+        foundation1: 'card2',
+        foundation2: 'card2',
+        foundation3: 'card2',
+        foundation4: 'card2',
+        tableau1bottom: 'card2',
+        tableau2bottom: 'card2',
+        tableau3bottom: 'card2',
+        tableau4bottom: 'card2',
+        tableau5bottom: 'card2',
+        tableau6bottom: 'card2',
+        tableau7bottom: 'card2',
+        tableau1second: 'card',
+        tableau2second: 'card',
+        tableau3second: 'card',
+        tableau4second: 'card',
+        tableau5second: 'card',
+        tableau6second: 'card',
+        tableau7second: 'card',
+        tableau1third: 'card',
+        tableau2third: 'card',
+        tableau3third: 'card',
+        tableau4third: 'card',
+        tableau5third: 'card',
+        tableau6third: 'card',
+        tableau7third: 'card',
+        tableau1fourth: 'card',
+        tableau2fourth: 'card',
+        tableau3fourth: 'card',
+        tableau4fourth: 'card',
+        tableau5fourth: 'card',
+        tableau6fourth: 'card',
+        tableau7fourth: 'card',
+        tableau1fifth: 'card',
+        tableau2fifth: 'card',
+        tableau3fifth: 'card',
+        tableau4fifth: 'card',
+        tableau5fifth: 'card',
+        tableau6fifth: 'card',
+        tableau7fifth: 'card',
+        tableau1sixth: 'card',
+        tableau2sixth: 'card',
+        tableau3sixth: 'card',
+        tableau4sixth: 'card',
+        tableau5sixth: 'card',
+        tableau6sixth: 'card',
+        tableau7sixth: 'card',
+        tableau1seventh: 'card',
+        tableau2seventh: 'card',
+        tableau3seventh: 'card',
+        tableau4seventh: 'card',
+        tableau5seventh: 'card',
+        tableau6seventh: 'card',
+        tableau7seventh: 'card',
+        tableau1eighth: 'card',
+        tableau2eighth: 'card',
+        tableau3eighth: 'card',
+        tableau4eighth: 'card',
+        tableau5eighth: 'card',
+        tableau6eighth: 'card',
+        tableau7eighth: 'card',
+        tableau1ninth: 'card',
+        tableau2ninth: 'card',
+        tableau3ninth: 'card',
+        tableau4ninth: 'card',
+        tableau5ninth: 'card',
+        tableau6ninth: 'card',
+        tableau7ninth: 'card',
+        tableau1tenth: 'card',
+        tableau2tenth: 'card',
+        tableau3tenth: 'card',
+        tableau4tenth: 'card',
+        tableau5tenth: 'card',
+        tableau6tenth: 'card',
+        tableau7tenth: 'card',
+        tableau1eleventh: 'card',
+        tableau2eleventh: 'card',
+        tableau3eleventh: 'card',
+        tableau4eleventh: 'card',
+        tableau5eleventh: 'card',
+        tableau6eleventh: 'card',
+        tableau7eleventh: 'card',
+        tableau1twelfth: 'card',
+        tableau2twelfth: 'card',
+        tableau3twelfth: 'card',
+        tableau4twelfth: 'card',
+        tableau5twelfth: 'card',
+        tableau6twelfth: 'card',
+        tableau7twelfth: 'card',
+        tableau1thirteenth: 'card',
+        tableau2thirteenth: 'card',
+        tableau3thirteenth: 'card',
+        tableau4thirteenth: 'card',
+        tableau5thirteenth: 'card',
+        tableau6thirteenth: 'card',
+        tableau7thirteenth: 'card',
+        tableau2fourteenth: 'card',
+        tableau3fourteenth: 'card',
+        tableau4fourteenth: 'card',
+        tableau5fourteenth: 'card',
+        tableau6fourteenth: 'card',
+        tableau7fourteenth: 'card',
+        tableau3fifteenth: 'card',
+        tableau4fifteenth: 'card',
+        tableau5fifteenth: 'card',
+        tableau6fifteenth: 'card',
+        tableau7fifteenth: 'card',
+        tableau4sixteenth: 'card',
+        tableau5sixteenth: 'card',
+        tableau6sixteenth: 'card',
+        tableau7sixteenth: 'card',
+        tableau5seventeenth: 'card',
+        tableau6seventeenth: 'card',
+        tableau7seventeenth: 'card',
+        tableau6eighteenth: 'card',
+        tableau7eighteenth: 'card',
+        tableau7nineteenth: 'card',
+      });
+      setVisibility({
+        stockpile: true,
+        discard1: true,
+        discard2: true,
+        discard3: true,
+        foundation1: true,
+        foundation2: true,
+        foundation3: true,
+        foundation4: true,
+        tableau1bottom: true,
+        tableau2bottom: true,
+        tableau3bottom: true,
+        tableau4bottom: true,
+        tableau5bottom: true,
+        tableau6bottom: true,
+        tableau7bottom: true,
+        tableau1second: false,
+        tableau2second: false,
+        tableau3second: false,
+        tableau4second: false,
+        tableau5second: false,
+        tableau6second: false,
+        tableau7second: false,
+        tableau1third: false,
+        tableau2third: false,
+        tableau3third: false,
+        tableau4third: false,
+        tableau5third: false,
+        tableau6third: false,
+        tableau7third: false,
+        tableau1fourth: false,
+        tableau2fourth: false,
+        tableau3fourth: false,
+        tableau4fourth: false,
+        tableau5fourth: false,
+        tableau6fourth: false,
+        tableau7fourth: false,
+        tableau1fifth: false,
+        tableau2fifth: false,
+        tableau3fifth: false,
+        tableau4fifth: false,
+        tableau5fifth: false,
+        tableau6fifth: false,
+        tableau7fifth: false,
+        tableau1sixth: false,
+        tableau2sixth: false,
+        tableau3sixth: false,
+        tableau4sixth: false,
+        tableau5sixth: false,
+        tableau6sixth: false,
+        tableau7sixth: false,
+        tableau1seventh: false,
+        tableau2seventh: false,
+        tableau3seventh: false,
+        tableau4seventh: false,
+        tableau5seventh: false,
+        tableau6seventh: false,
+        tableau7seventh: false,
+        tableau1eighth: false,
+        tableau2eighth: false,
+        tableau3eighth: false,
+        tableau4eighth: false,
+        tableau5eighth: false,
+        tableau6eighth: false,
+        tableau7eighth: false,
+        tableau1ninth: false,
+        tableau2ninth: false,
+        tableau3ninth: false,
+        tableau4ninth: false,
+        tableau5ninth: false,
+        tableau6ninth: false,
+        tableau7ninth: false,
+        tableau1tenth: false,
+        tableau2tenth: false,
+        tableau3tenth: false,
+        tableau4tenth: false,
+        tableau5tenth: false,
+        tableau6tenth: false,
+        tableau7tenth: false,
+        tableau1eleventh: false,
+        tableau2eleventh: false,
+        tableau3eleventh: false,
+        tableau4eleventh: false,
+        tableau5eleventh: false,
+        tableau6eleventh: false,
+        tableau7eleventh: false,
+        tableau1twelfth: false,
+        tableau2twelfth: false,
+        tableau3twelfth: false,
+        tableau4twelfth: false,
+        tableau5twelfth: false,
+        tableau6twelfth: false,
+        tableau7twelfth: false,
+        tableau1thirteenth: false,
+        tableau2thirteenth: false,
+        tableau3thirteenth: false,
+        tableau4thirteenth: false,
+        tableau5thirteenth: false,
+        tableau6thirteenth: false,
+        tableau7thirteenth: false,
+        tableau2fourteenth: false,
+        tableau3fourteenth: false,
+        tableau4fourteenth: false,
+        tableau5fourteenth: false,
+        tableau6fourteenth: false,
+        tableau7fourteenth: false,
+        tableau3fifteenth: false,
+        tableau4fifteenth: false,
+        tableau5fifteenth: false,
+        tableau6fifteenth: false,
+        tableau7fifteenth: false,
+        tableau4sixteenth: false,
+        tableau5sixteenth: false,
+        tableau6sixteenth: false,
+        tableau7sixteenth: false,
+        tableau5seventeenth: false,
+        tableau6seventeenth: false,
+        tableau7seventeenth: false,
+        tableau6eighteenth: false,
+        tableau7eighteenth: false,
+        tableau7nineteenth: false,
+      });
     }
 
     function autoSolve() {
@@ -2228,10 +2538,7 @@ export default function Board() { // board inspired by tic tac toe tutorial
 
 /* things I still need to add
   - iron out bugs
-    - if you move the king with its lower cards to a free slot, there is a gap between the king and the first card
   - fix sizing (particularly of the newly added tableau slots)
   - theres a bug with faceup tableau 6 ninth???? idk, fixed by going around the issue, not happy
   - deal with invalid second click alert
-  - auto-solve?
-  - tried to reset at one point and got a reading 0 error
 */
