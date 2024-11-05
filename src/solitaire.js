@@ -1183,7 +1183,7 @@ export default function Board() { // board inspired by tic tac toe tutorial
           setFirstClick(null);
         }
         else {
-          alert("invalid second click"); // deal with this later
+          alert("invalid click");
           setCardClass(prevState => ({
             ...prevState,
             [firstClick]: 'card2',
@@ -2538,5 +2538,4 @@ export default function Board() { // board inspired by tic tac toe tutorial
 
 /* things I still need to add
   - theres a bug with faceup tableau 6 ninth???? idk, fixed by going around the issue, not happy
-  - deal with invalid second click alert
 */
